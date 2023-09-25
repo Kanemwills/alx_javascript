@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>2-index</title>
+    <script>
+        function setCookies() {
+            let firstname = document.getElementById("firstname").value;
+            let email = document.getElementById("email").value;
+            document.cookie = `firstname=${firstname}`;
+            document.cookie = `email=${email}`;
+        }
+
+        function getCookie(name) {
+            let cookies = document.cookie.split("; ");
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i];
+                if (cookie.startsWith(name + "=")) {
+                    return cookie.split("=")[1];
+                }
+            }
+            return "";
+        }
+
+        function showCookies() {
+            let firstname = getCookie("firstname");
+            let email = getCookie("email");
+            let p = document.createElement("p");
+            p.innerHTML = `Email: ${email} - Firstname: ${firstname}`;
+            document.body.appendChild(p);
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="firstname" placeholder="First Name"><br><br>
+    <input type="text" id="email" placeholder="Email"><br><br>
+    <button onclick="setCookies()">Log me in</button><br><br>
+    <button onclick="showCookies()">Show the cookies</button>
+</body>
+</html>
